@@ -1,0 +1,33 @@
+Before we begin, make sure you have the following prerequisites installed on your machine:
+
+AWS CLI
+eksctl
+kubectl
+Once you have these tools installed, follow the steps below to create an EKS cluster:
+To install eksctl, run the following command:
+curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp && sudo mv /tmp/eksctl /usr/local/bin
+Create an EKS cluster with eksctl
+To create an EKS cluster, run the following command:
+eksctl create cluster \
+--name <cluster-name> \
+--region <region> \
+--nodegroup-name <node-group-name> \
+--node-type <node-type> \
+--nodes <num-nodes> \
+--ssh-access \
+--ssh-public-key <path-to-ssh-public-key>
+Configure kubectl
+To configure kubectl to communicate with your EKS cluster, run the following command:
+aws eks update-kubeconfig --name <cluster-name> --region <region>
+
+To install kubectl
+Download from below command
+curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+Add execute permission to the binary:
+chmod +x ./kubectl
+Move the binary to a directory in your path:
+sudo mv ./kubectl /usr/local/bin/kubectl
+Verify the installation:
+kubectl version --client
+
+done thats it ... enjoy
